@@ -92,7 +92,7 @@ let actionFiveSecondWait = SKAction.wait(forDuration: 5.0)
 let upThisMuch = CGVector(dx: 0, dy: 250)
 
 // Define an action that causes a node to move up for half a second
-let actionUpwardsMovement = SKAction.move(by: upThisMuch, duration: 0.5)
+let actionUpwardsMovement = SKAction.move(by: upThisMuch, duration: 1)
 
 /*:
  
@@ -109,30 +109,30 @@ let actionUpwardsMovement = SKAction.move(by: upThisMuch, duration: 0.5)
  
  */
 
-//// 1. Make the first circle move up immediately (runs a single action, once)
+////// 1. Make the first circle move up immediately (runs a single action, once)
 //circle1.run(actionUpwardsMovement)
 
 //// Define a sequence that involves a:
 //// * five second wait
 //// * moving upward
 //let actionShortWaitThenMoveUp = SKAction.sequence([actionFiveSecondWait, actionUpwardsMovement])
-
+//
 //// 2. Make the second circle wait for five seconds, then move up
 //circle2.run(actionShortWaitThenMoveUp)
-
+//
 //// Define a sequence that involves a:
 //// * five second wait
 //// * another five second wait
 //// * moving upward
 //let actionLongerWaitThenMoveUp = SKAction.sequence([actionFiveSecondWait, actionFiveSecondWait, actionUpwardsMovement])
-
+//
 //// 3. Make the third circle wait for 10 seconds, then move up
 //circle3.run(actionLongerWaitThenMoveUp)
-
+//
 //// 4. Make the fourth circle move up every five seconds
 //let actionRepeatWaitThenJump = SKAction.repeatForever(actionShortWaitThenMoveUp)
 //circle4.run(actionRepeatWaitThenJump)
-
+//
 //// 5. Make the third circle wait for 15 seconds, then both fade in and out, and then both expand and contract in size
 //
 //// Grouped actions to get larger and fade out
@@ -175,13 +175,21 @@ let actionUpwardsMovement = SKAction.move(by: upThisMuch, duration: 0.5)
  
  */
 
-// Exercise 1: Write your code below.
-
-
+//Exercise 1: Write your code below.
+let actionTwentySecondWait = SKAction.wait(forDuration: 20.0)
+let moveToTheRight = CGVector(dx: 100, dy: 0)
+let actionMoveToTheRight = SKAction.move(by: moveToTheRight, duration: 2)
+let waitThenMoveToTheRight = SKAction.sequence([actionTwentySecondWait, actionMoveToTheRight])
+circle1.run(waitThenMoveToTheRight)
 // Exercise 2: Write your code below.
-
-
+let moveToTheLeft = CGVector(dx: -100, dy: 0)
+let actionMoveToTheLeft = SKAction.move(by: moveToTheLeft, duration: 2)
+let waitThenMoveToTheLeft = SKAction.sequence([actionTwentySecondWait, actionMoveToTheLeft])
+circle2.run(waitThenMoveToTheLeft)
 // Exercise 3: Write your code below.
+let upUpInAWay = CGVector(dx: 0, dy: 1000)
+let moveUp = SKAction.move(by: upUpInAWay, duration: 10)
+circle3.run(moveUp)
 
 
 /*:
