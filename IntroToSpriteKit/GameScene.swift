@@ -65,7 +65,7 @@ class GameScene: SKScene {
         self.run(actionRepeatlyAddSnowFlake)
         self.run(actionRepeatlyAddSnowFlake)
 
-        var hero = SKSpriteNode(imageNamed: "AOCXmasGifts_01")
+        let hero = SKSpriteNode(imageNamed: "AOCXmasGifts_01")
         hero.position = CGPoint(x: hero.size.width / 2, y: hero.size.height / 2)
         hero.physicsBody?.isDynamic = false
         self.addChild(hero)
@@ -92,10 +92,10 @@ class GameScene: SKScene {
         let actionWalkAndMove = SKAction.group([actionWalkingAnimation, actionMoveForwardTwice])
 
         // Repeat the "walk and move" action five times
-        let actionWalkAndMoveFiveTimes = SKAction.repeat(actionWalkAndMove, count: 20)
+        let actionWalkAndMoveNTTimes = SKAction.repeat(actionWalkAndMove, count: 19)
 
         // Make the hero walk and move forward five times
-        hero.run(actionWalkAndMoveFiveTimes)
+        hero.run(actionWalkAndMoveNTTimes)
         // Create an empty array of SKTexture objects
         var shooting: [SKTexture] = []
         // Now add the two images we need in the array
@@ -117,11 +117,57 @@ class GameScene: SKScene {
         hero.run(sequenceWaitShoot)
         //makes the hero wait and then leave the screen
         let actionWaitUntilShot = SKAction.wait(forDuration: 12.0)
-        let actionWalkAgain = SKAction.sequence([actionWaitUntilShot, actionWalkAndMoveFiveTimes])
+        let actionWalkAgain = SKAction.sequence([actionWaitUntilShot, actionWalkAndMoveNTTimes])
         //makes the hero leave the screen :)
-        hero.run(actionWalkAgain)
+        let actionLeaveScreen = SKAction.sequence([actionWalkAgain, actionMoveForwardTwice, actionMoveForwardTwice])
+        hero.run(actionLeaveScreen)
         
         
+        
+        //defines a new node
+        let snowBall = SKSpriteNode(imageNamed: "snowBall")
+        //positions the node
+        snowBall.position = CGPoint(x: self.size.width / 2, y: 35)
+        //makes the node wait a certain amount of time before appearing
+        let actionWaitAfterShot = SKAction.wait(forDuration: 9.5)
+        //adding the node when this function is called
+        let actionSpawn = SKAction.run{self.addChild(snowBall)}
+        //wait and then add the node
+        let actionWaitThenSpawn = SKAction.sequence([actionWaitAfterShot, actionSpawn])
+        //adds the snowball
+        hero.run(actionWaitThenSpawn)
+        let actionFly = SKAction.moveBy(x: 0, y: 400, duration: 5)
+        snowBall.run(actionFly)
+        
+        
+        let snowBall2 = SKSpriteNode(imageNamed: "snowBall")
+        //positions the node
+        snowBall2.position = CGPoint(x: self.size.width / 2, y: 35)
+        //makes the node wait a certain amount of time before appearing
+        let actionWaitAfterShot2 = SKAction.wait(forDuration: 11)
+        //adding the node when this function is called
+        let actionSpawn2 = SKAction.run{self.addChild(snowBall2)}
+        //wait and then add the node
+        let actionWaitThenSpawn2 = SKAction.sequence([actionWaitAfterShot2, actionSpawn2])
+        //adds the snowball
+        hero.run(actionWaitThenSpawn2)
+        let actionFly2 = SKAction.moveBy(x: -400, y: 400, duration: 5)
+        snowBall2.run(actionFly2)
+        
+        
+        let snowBall3 = SKSpriteNode(imageNamed: "snowBall")
+        //positions the node
+        snowBall3.position = CGPoint(x: self.size.width / 2, y: 35)
+        //makes the node wait a certain amount of time before appearing
+        let actionWaitAfterShot3 = SKAction.wait(forDuration: 12)
+        //adding the node when this function is called
+        let actionSpawn3 = SKAction.run{self.addChild(snowBall3)}
+        //wait and then add the node
+        let actionWaitThenSpawn3 = SKAction.sequence([actionWaitAfterShot3, actionSpawn3])
+        //adds the snowball
+        hero.run(actionWaitThenSpawn3)
+        let actionFly3 = SKAction.moveBy(x: 400, y: 400, duration: 5)
+        snowBall3.run(actionFly3)
         
     }
     
