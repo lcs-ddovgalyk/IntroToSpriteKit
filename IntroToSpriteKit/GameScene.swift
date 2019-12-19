@@ -175,7 +175,7 @@ class GameScene: SKScene {
 
         let christmasDecor = SKSpriteNode(imageNamed: "ChristmasDecor-1")
         christmasDecor.position = CGPoint(x: self.size.width / 2, y:500)
-        let actionWaitToAppear = SKAction.wait(forDuration: 8.0)
+        let actionWaitToAppear = SKAction.wait(forDuration: 7.0)
         let actionSpawnChristmasDecor = SKAction.run{self.addChild(christmasDecor)}
         let actionWaitToSpawn = SKAction.sequence([actionWaitToAppear, actionSpawnChristmasDecor])
         hero.run(actionWaitToSpawn)
@@ -197,7 +197,7 @@ class GameScene: SKScene {
         //FOLLOWING CODE IS adding the Christmas Tree to the animation
         let christmasTree = SKSpriteNode(imageNamed: "christmasTree-1")
         christmasTree.position = CGPoint(x: self.size.width * 3/4, y:200)
-        let actionWaitToAppearCT = SKAction.wait(forDuration: 8.0)
+        let actionWaitToAppearCT = SKAction.wait(forDuration: 7.0)
         let actionSpawnChristmasTree = SKAction.run{self.addChild(christmasTree)}
         let actionWaitToSpawnCT = SKAction.sequence([actionWaitToAppearCT, actionSpawnChristmasTree])
         hero.run(actionWaitToSpawnCT)
@@ -218,7 +218,7 @@ class GameScene: SKScene {
         //FOLLOWING CODE IS adding 'Merry Christmas' To the animation
         let merryChristmas = SKSpriteNode(imageNamed: "MC-1")
         merryChristmas.position = CGPoint(x: self.size.width / 4, y: 200)
-        let actionWaitToAppearMC = SKAction.wait(forDuration: 8.0)
+        let actionWaitToAppearMC = SKAction.wait(forDuration: 7.0)
         let actionSpawnMarryChristmas = SKAction.run{self.addChild(merryChristmas)}
         let actionWaitToSpawnMC = SKAction.sequence([actionWaitToAppearMC, actionSpawnMarryChristmas])
         hero.run(actionWaitToSpawnMC)
@@ -236,6 +236,13 @@ class GameScene: SKScene {
         merryChristmas.run(actionBlinckMC)
         
         
+        //END SCREEN
+        let endScreen = SKSpriteNode(imageNamed: "EndScreen")
+        endScreen.position = CGPoint(x: self.size.width / 2, y: self.size.height / 2)
+        let actionWaitToAppearES = SKAction.wait(forDuration: 12.0)
+        let actionSpawnES = SKAction.run{self.addChild(endScreen)}
+        let actionWaitToSpawnES = SKAction.sequence([actionWaitToAppearES, actionSpawnES])
+        hero.run(actionWaitToSpawnES)
 
     }
     
