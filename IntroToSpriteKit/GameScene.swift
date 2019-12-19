@@ -65,7 +65,7 @@ class GameScene: SKScene {
         self.run(actionRepeatlyAddSnowFlake)
         self.run(actionRepeatlyAddSnowFlake)
 
-        let hero = SKSpriteNode(imageNamed: "AOCXmasGifts_01")
+        var hero = SKSpriteNode(imageNamed: "AOCXmasGifts_01")
         hero.position = CGPoint(x: hero.size.width / 2, y: hero.size.height / 2)
         hero.physicsBody?.isDynamic = false
         self.addChild(hero)
@@ -75,7 +75,6 @@ class GameScene: SKScene {
         // Now add the two images we need in the array
         walkingTextures.append(SKTexture(imageNamed: "AOCXmasGifts_01"))
         walkingTextures.append(SKTexture(imageNamed: "AOCXmasGifts_02"))
-        //walkingTextures.append(SKTexture(imageNamed: "AOCXmasGifts_03"))
      
         
         // Create an action to animate a walking motion using the hero sprites array (walkingTextures)
@@ -83,6 +82,7 @@ class GameScene: SKScene {
 
         // Create an action that moves the hero forward a "step" where a step is 10 pixels
         // NOTE: The time interval for moving forward matches the time per frame of the animation
+        
         let actionMoveForward = SKAction.moveBy(x: 10, y: 0, duration: 0.2)
 
         // Repeat the move forward action twice
@@ -96,7 +96,31 @@ class GameScene: SKScene {
 
         // Make the hero walk and move forward five times
         hero.run(actionWalkAndMoveFiveTimes)
+        // Create an empty array of SKTexture objects
+        var shooting: [SKTexture] = []
+        // Now add the two images we need in the array
 
+        shooting.append(SKTexture(imageNamed: "AXmasSnowdown_38"))
+        shooting.append(SKTexture(imageNamed: "AXmasSnowdown_43"))
+        shooting.append(SKTexture(imageNamed: "AXmasSnowdown_38"))
+        shooting.append(SKTexture(imageNamed: "AXmasSnowdown_40"))
+        shooting.append(SKTexture(imageNamed: "AXmasSnowdown_38"))
+        shooting.append(SKTexture(imageNamed: "AXmasSnowdown_44"))
+
+        //creates a shooting animation
+        let actionShoot = SKAction.animate(with: shooting, timePerFrame: 0.5, resize: true, restore: true)
+        //makes the hero wait before shooting
+        let actionWaitBeforeShooting = SKAction.wait(forDuration: 9.0)
+        //creates a sequence, wait, then shoot
+        let sequenceWaitShoot = SKAction.sequence([actionWaitBeforeShooting, actionShoot])
+        //Make the hero shoot :)
+        hero.run(sequenceWaitShoot)
+        //makes the hero wait and then leave the screen
+        let actionWaitUntilShot = SKAction.wait(forDuration: 12.0)
+        let actionWalkAgain = SKAction.sequence([actionWaitUntilShot, actionWalkAndMoveFiveTimes])
+        //makes the hero leave the screen :)
+        hero.run(actionWalkAgain)
+        
         
         
     }
