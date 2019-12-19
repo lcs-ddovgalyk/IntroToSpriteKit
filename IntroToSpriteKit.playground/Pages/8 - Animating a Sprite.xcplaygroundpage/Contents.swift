@@ -83,12 +83,12 @@ An [array](https://docs.swift.org/swift-book/LanguageGuide/CollectionTypes.html#
  ![show-result](show-result.png)
  
 */
-//// Create an empty array of SKTexture objects
-//var walkingTextures: [SKTexture] = []
-//
-//// Now add the two images we need in the array
-//walkingTextures.append(SKTexture(imageNamed: "hero-walk-right-0"))
-//walkingTextures.append(SKTexture(imageNamed: "hero-walk-right-1"))
+// Create an empty array of SKTexture objects
+var walkingTextures: [SKTexture] = []
+
+// Now add the two images we need in the array
+walkingTextures.append(SKTexture(imageNamed: "hero-walk-right-0"))
+walkingTextures.append(SKTexture(imageNamed: "hero-walk-right-1"))
 
 
 /*:
@@ -107,24 +107,24 @@ An [array](https://docs.swift.org/swift-book/LanguageGuide/CollectionTypes.html#
  
  */
 
-//// Create an action to animate a walking motion using the hero sprites array (walkingTextures)
-//let actionWalkingAnimation = SKAction.animate(with: walkingTextures, timePerFrame: 0.2, resize: true, restore: true)
-//
-//// Create an action that moves the hero forward a "step" where a step is 10 pixels
-//// NOTE: The time interval for moving forward matches the time per frame of the animation
-//let actionMoveForward = SKAction.moveBy(x: 10, y: 0, duration: 0.2)
-//
-//// Repeat the move forward action twice
-//let actionMoveForwardTwice = SKAction.repeat(actionMoveForward, count: 2)
-//
-//// Now, combine the walking animation with the sprite moving forward
-//let actionWalkAndMove = SKAction.group([actionWalkingAnimation, actionMoveForwardTwice])
-//
-//// Repeat the "walk and move" action five times
-//let actionWalkAndMoveFiveTimes = SKAction.repeat(actionWalkAndMove, count: 5)
-//
-//// Make the hero walk and move forward five times
-//hero.run(actionWalkAndMoveFiveTimes)
+// Create an action to animate a walking motion using the hero sprites array (walkingTextures)
+let actionWalkingAnimation = SKAction.animate(with: walkingTextures, timePerFrame: 0.2, resize: true, restore: true)
+
+// Create an action that moves the hero forward a "step" where a step is 10 pixels
+// NOTE: The time interval for moving forward matches the time per frame of the animation
+let actionMoveForward = SKAction.moveBy(x: 10, y: 0, duration: 0.2)
+
+// Repeat the move forward action twice
+let actionMoveForwardTwice = SKAction.repeat(actionMoveForward, count: 2)
+
+// Now, combine the walking animation with the sprite moving forward
+let actionWalkAndMove = SKAction.group([actionWalkingAnimation, actionMoveForwardTwice])
+
+// Repeat the "walk and move" action five times
+let actionWalkAndMoveFiveTimes = SKAction.repeat(actionWalkAndMove, count: 5)
+
+// Make the hero walk and move forward five times
+hero.run(actionWalkAndMoveFiveTimes)
 
 /*:
  ### Exercise
@@ -147,6 +147,29 @@ An [array](https://docs.swift.org/swift-book/LanguageGuide/CollectionTypes.html#
  */
 
 // Exercise: Write your code below
+let actionMoveUp = SKAction.moveBy(x: 0, y: 10, duration: 0.5)
+let rocket = SKSpriteNode(imageNamed: "rocket")
+rocket.position = CGPoint(x: hero.size.width / 2 + 50, y: hero.size.height / 2)
+rocket.physicsBody?.isDynamic = false
+
+
+
+scene.addChild(rocket)
+
+var flyingRocket: [SKTexture] = []
+flyingRocket.append(SKTexture(imageNamed: "rocket_0"))
+flyingRocket.append(SKTexture(imageNamed: "rocket_1"))
+flyingRocket.append(SKTexture(imageNamed: "rocket_2"))
+flyingRocket.append(SKTexture(imageNamed: "rocket_3"))
+flyingRocket.append(SKTexture(imageNamed: "rocket_4"))
+flyingRocket.append(SKTexture(imageNamed: "rocket_5"))
+let actionFlyingRocket = SKAction.animate(with: flyingRocket, timePerFrame: 0.2, resize: true, restore: true)
+let actionFly = SKAction.group([actionFlyingRocket, actionMoveUp])
+let actionFlyFiveTimes = SKAction.repeat(actionFly, count: 5)
+rocket.run(actionFlyFiveTimes)
+
+
+
 
 /*:
  
